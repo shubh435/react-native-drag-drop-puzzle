@@ -54,13 +54,14 @@ export default  class Draggable extends Component {
         this.translateY .flattenOffset()
 
         const { id, positions, onPositionsChange } = this.props;
-        const newOrder = getOrder(gestureState.moveX , gestureState.moveY);
+        const newOrder = getOrder(this.translateX._value, this.translateY._value);
         const oldOrder = positions[id];
 
         if (oldOrder !== newOrder) {
           const idToSwap = Object.keys(positions).find(
             (key) => positions[key] === newOrder
           );
+
           if (idToSwap) {
             const newPositions = { ...positions };
             newPositions[id] = newOrder;
